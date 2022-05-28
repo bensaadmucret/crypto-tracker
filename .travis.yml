@@ -20,6 +20,10 @@ matrix:
     - php: hhvm
   fast_finish: true
 
+
+script:
+  - ./bin/phpunit
+
 # Customize when the notification emails are sent.
 notifications:
   on_success: never
