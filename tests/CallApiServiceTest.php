@@ -12,6 +12,8 @@ use Symfony\Component\HttpClient\Exception\InvalidArgumentException;
 
 class CallApiServiceTest extends TestCase
 {
+
+
     // Test si phpunit est bien lancé
     public function testSomething(): void
     {

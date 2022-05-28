@@ -38,8 +38,6 @@ class ApiService
         $content = $response->getContent();
 
         $content = $response->toArray();
-
-       dd($content);
        
 
      
