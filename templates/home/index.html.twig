@@ -34,15 +34,13 @@
 						</div>
 					</div>
 				</div>
-
-				<form class="pt-4 px-3" action="message" method="post">
 					
                         {% for cryto in tokens %}
-                        <div class="d-flex justify-content-between">
+                        <div class="m-3 d-flex justify-content-between py-2">
                        <h3 class="justify-content-between"> 
                        <span>{{ cryto.symbol }}</span> <span class="small">( {{ cryto.name }} ) </span>
-                        
-                         <span class="text-right">
+                        <span class="small">{{ cryto.change7d }} &euro;</span>
+                         <span>
                          {% if cryto.change7d > 0 %}
                          <span class="p-3 small">&#9650;</span>
                             {% elseif cryto.change7d < 0 %}
@@ -62,7 +60,7 @@
                           {% endfor %}
 					
                 
-				</form>
+		
 
 			</div>
 			<div class="mt-4 navbar align-items-center d-flex justify-content-between border-top">
