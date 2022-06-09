@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Token{% endblock %}
+
+{% block body %}
+    <h1>Token</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ token.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ token.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ token.slug }}</td>
+            </tr>
+            <tr>
+                <th>Symbol</th>
+                <td>{{ token.symbol }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ token.price }}</td>
+            </tr>
+            <tr>
+                <th>Change_24h</th>
+                <td>{{ token.change24h }}</td>
+            </tr>
+            <tr>
+                <th>Change_1h</th>
+                <td>{{ token.change1h }}</td>
+            </tr>
+            <tr>
+                <th>Change_7d</th>
+                <td>{{ token.change7d }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_token_index') }}">back to list</a>
+
+    <a href="{{ path('app_token_edit', {'id': token.id}) }}">edit</a>
+
+    {{ include('token/_delete_form.html.twig') }}
+{% endblock %}

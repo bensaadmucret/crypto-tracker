@@ -10,7 +10,7 @@
 		<div class="card Regular shadow" style="min-width: 360px;">
 			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
 				<span>
-					<h1 class="d-flex logo">Cryto Traker</h1>
+					<h1 class="d-flex logo">c</h1>
 				</span>
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="pr-2 text-right">
@@ -23,7 +23,7 @@
 				</div>
 			</div>
 			<div class="scroll">
-				<div class="d-flex justify-content-center py-2 header-image border-bottom">
+				<div class="d-flex justify-content-center py-2 header-image">
 					<div class="debit pt-3 pb-1">
 						<div class="d-flex justify-content-between align-items-center px-3">
 							<span class="black"></span>
@@ -37,48 +37,45 @@
 
 				<form class="pt-4 px-3" action="message" method="post">
 					
+					<select class="form-control">
+						<option>selectionner une crypto</option>
                         {% for cryto in tokens %}
-                        <div class="d-flex justify-content-between">
-                       <h3 class="justify-content-between"> 
-                       <span>{{ cryto.symbol }}</span> <span class="small">( {{ cryto.name }} ) </span>
-                        
-                         <span class="text-right">
-                         {% if cryto.change7d > 0 %}
-                         <span class="p-3 small">&#9650;</span>
-                            {% elseif cryto.change7d < 0 %}
-                        <span class="p-3 small">&#9660;</span>
-                            {% else %}
-                        <span class="p-3 small"></h2>">&#x25BA; </span>
-                            
-                            {% endif %}
-                           </span>
-                         
-                       </h3>
-                        </div>
-                       
-
-                        
-                
+                        <option>{{ cryto.name }}</option>
                           {% endfor %}
-					
-                
+					</select>
+                  
+					<div class="form-group">
+						<label for="InputQuantity">Quantité</label>
+						<input type="text" class="form-control" id="InputQuantity" placeholder="Quantité">
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" id="Check1">
+						<label class="form-check-label" for="Check1">RGBD</label>
+					</div>
+					<button type="submit" class="btn btn-primary">Ajouter</button>
 				</form>
 
 			</div>
-			<div class="mt-4 navbar align-items-center d-flex justify-content-between border-top">
+			<div class="navbar align-items-center d-flex justify-content-between border-top">
 				<div class="d-flex justify-content-center">
-					
+					<span class="home">Home</span>
+					<span class="dot1">.</span>
 				</div>
 				<div>
-					
+					<i class="fa fa-calendar calender"></i>
 				</div>
 				<div class="pr-1">
-					
+					<div class="curve2">
+						<span class="downplus">+</span>
+					</div>
 				</div>
 				<div>
-				
+					<i class="fa fa-cog calender"></i>
 				</div>
-				
+				<div>
+					<i class="fa fa-commenting-o cog"></i>
+					<span class="dot2">.</span>
+				</div>
 			</div>
 		</div>
 	</div>

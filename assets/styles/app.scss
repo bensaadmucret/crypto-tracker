@@ -1,0 +1,71 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: #efefef;
+    font-family: 'Roboto', sans-serif;
+}
+
+div.header-image {
+    background-image: url('/assets/images/fond.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+     color: white;
+    height: 100px;
+}
+
+.logo{
+    color: white;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+
+
+}
+.pen{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.add{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.card {
+    word-wrap: break-word;
+    background-clip: border-box;
+    background-color: #100f0f;
+    color: white;
+    border-radius: 10px;
+    border: 1px solidrgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    position: relative;
+}
+
+.result{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.small{
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
