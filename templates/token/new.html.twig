@@ -1,11 +1,71 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Token{% endblock %}
+{% block title %}New Token
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Token</h1>
 
-    {{ include('token/_form.html.twig') }}
 
-    <a href="{{ path('app_token_index') }}">back to list</a>
-{% endblock %}
+	<div class="container d-flex justify-content-center mt-5 ">
+		<div class="card Regular shadow" style="min-width: 360px;">
+			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
+				<span>
+					<h1 class="d-flex logo">Cryto Traker</h1>
+				</span>
+				<div class="d-flex justify-content-center align-items-center">
+					<div class="pr-2 text-right">
+						<span class="pen">
+							<i class="fa-solid fa-pen"></i>
+						</span>
+						<span class="add">
+							<i class="fa-solid fa-plus"></i>
+						</span>
+					</div>
+					<div></div>
+				</div>
+                 
+			</div>
+              
+                <button type="button" class="btn btn-link text-danger">
+                 <a style="color: white; text-decoration: none;" href="{{ path('app_token_index') }}">Retour à la liste</a>
+                 </button>
+                
+			<div class="scroll">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
+					</div>
+				{% endfor %}
+
+				<div class="d-flex justify-content-center py-2">
+					<div class="debit pt-3 pb-1">
+						<div class="d-flex justify-content-between align-items-center px-3">
+							<span class="black"></span>
+							<div class="mt-4">
+
+								{{ form_start(form) }}
+								{{ form_widget(form) }}
+
+								<div class="col-md-12 mt-5 text-center">
+									<button class="btn btn-secondary px-5" type="submit">{{ button_label|default('Ajouter') }}</button>
+								</div>
+
+								{{ form_end(form) }}
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="navbar align-items-center d-flex justify-content-between border-top">
+					<div class="d-flex justify-content-center"></div>
+					<div></div>
+					<div class="pr-1"></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+
+
+		
+	{% endblock %}

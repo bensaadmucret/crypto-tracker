@@ -25,6 +25,11 @@
 				</div>
 			</div>
 			<div class="scroll">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
+					</div>
+				{% endfor %}
 
 				<div class="d-flex justify-content-center py-2">
 					<div class="debit pt-3 pb-1">
@@ -36,7 +41,7 @@
 								{{ form_widget(form) }}
 
 								<div class="col-md-12 mt-5 text-center">
-									<button class="btn btn-secondary px-5" type="button">{{ button_label|default('Ajouter') }}</button>
+									<button class="btn btn-secondary px-5" type="submit">{{ button_label|default('Ajouter') }}</button>
 								</div>
 
 								{{ form_end(form) }}
@@ -54,10 +59,6 @@
 				</div>
 			</div>
 		</div>
-		
-			
-	
 
-		
-		
+
 	{% endblock %}

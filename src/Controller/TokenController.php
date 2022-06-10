@@ -22,7 +22,8 @@ class TokenController extends AbstractController
     public function index(TokenRepository $tokenRepository, Request $request): Response
     {
 
-        $form = $this->createFormBuilder()
+        $form = $this->createFormBuilder( )
+        ->setAction($this->generateUrl('app_token_new'))
         ->add('name', EntityType::class, [
             'class' => Token::class,
             'choice_label' => 'name',
@@ -62,7 +63,7 @@ class TokenController extends AbstractController
             
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->addFlash('success', 'Transaction effectuée avec succès');
-                return $this->redirectToRoute('app_token_index');
+                return $this->redirectToRoute('app_token_new');
             }
             else {
                 $this->addFlash('error', 'Transaction échouée');
