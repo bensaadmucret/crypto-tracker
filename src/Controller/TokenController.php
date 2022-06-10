@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -17,31 +19,62 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TokenController extends AbstractController
 {
     #[Route('/', name: 'app_token_index', methods: ['GET'])]
-    public function index(TokenRepository $tokenRepository): Response
+    public function index(TokenRepository $tokenRepository, Request $request): Response
     {
+
         $form = $this->createFormBuilder()
         ->add('name', EntityType::class, [
             'class' => Token::class,
             'choice_label' => 'name',
+            'choice_value' => 'price',
+            'label' => 'Cryptomonnaies',
             'multiple' => false,
             'expanded' => false,
             'required' => true,
             'empty_data' => '',
-            'placeholder' => 'Choisissez une ou plusieurs cryptomonnaies',
+            'placeholder' => 'Choisissez une cryptomonnaies',
             ])
-        ->add('prix',TextType::class,[
-            'required' => false,
-            
-        ] )
-        ->add('Quantité',TextType::class, )
-        ->add('submit', SubmitType::class, [
-            'label' => 'Valider',
+
+        ->add('quantity',MoneyType::class,[
+                'required' => true,
+                'label' => "Quantité",
+                'attr' => [
+                    'placeholder' => 'Entrez la quantité',
+                    'class' => 'form-control'
+                ]
+            ])
+               
+        ->add('price',MoneyType::class,[
+            'required' => true,
+            'label' => "Prixd'achat",
             'attr' => [
-                'class' => 'btn btn-primary',
+                'placeholder' => 'Transaction en €',
             ],
+       
         ])
-            ->getForm();
-    return $this->renderForm('home/add.html.twig',compact('form'));
+         ->getForm();
+            $form->submit($request->request->all());
+            $form->handleRequest($request);
+            $data = $form->getData();
+            $name = $data['name'];
+            $price = $data['price'];
+            $quantity = $data['quantity'];
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->addFlash('success', 'Transaction effectuée avec succès');
+                return $this->redirectToRoute('app_token_index');
+            }
+            else {
+                $this->addFlash('error', 'Transaction échouée');
+                
+            }
+          
+
+            return $this->render('home/add.html.twig', [
+                'form' => $form->createView(),
+                'tokens' => $tokenRepository->findAll(),
+            ]);
+            
     }
 
     #[Route('/new', name: 'app_token_new', methods: ['GET', 'POST'])]

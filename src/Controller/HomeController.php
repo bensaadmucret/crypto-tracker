@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 class HomeController extends AbstractController
 {
 
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(ApiService $ApiService, 
     ManagerRegistry $managerRegistry, 
      ): Response
