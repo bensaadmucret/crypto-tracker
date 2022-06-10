@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/token')]
@@ -23,7 +24,7 @@ class TokenController extends AbstractController
     {
 
         $form = $this->createFormBuilder( )
-        ->setAction($this->generateUrl('app_token_new'))
+        ->setAction($this->generateUrl('app_token_payment'))
         ->add('name', EntityType::class, [
             'class' => Token::class,
             'choice_label' => 'name',
@@ -54,16 +55,16 @@ class TokenController extends AbstractController
        
         ])
          ->getForm();
-            $form->submit($request->request->all());
-            $form->handleRequest($request);
-            $data = $form->getData();
-            $name = $data['name'];
-            $price = $data['price'];
-            $quantity = $data['quantity'];
             
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->addFlash('success', 'Transaction effectuée avec succès');
-                return $this->redirectToRoute('app_token_new');
+                return $this->redirectToRoute('app_token_payment', 
+                    [
+                        'name' => $name,
+                        'price' => $price,
+                        'quantity' => $quantity,
+                    ]
+                );
             }
             else {
                 $this->addFlash('error', 'Transaction échouée');
@@ -77,6 +78,26 @@ class TokenController extends AbstractController
             ]);
             
     }
+
+    #[Route('/payment', name: 'app_token_payment', methods: ['GET', 'POST'])]
+    public function payement(CsrfTokenManagerInterface $csrfTokenManager, Request $request): Response
+    {
+        $data = $request->request->all();
+    
+        $name = $data['form']['name'];
+        $price = $data['form']['price'];
+        $quantity = $data['form']['quantity'];
+        $total = $price / $quantity;
+        $token = $csrfTokenManager->getToken('payemnt_token')->getValue();
+        return $this->render('token/payment.html.twig', [
+                'name' => $name,
+                'price' => $price,
+                'quantity' => $quantity,
+                'total' => $total,
+                'token' => $token,
+            ]);
+    }
+           
 
     #[Route('/new', name: 'app_token_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TokenRepository $tokenRepository): Response

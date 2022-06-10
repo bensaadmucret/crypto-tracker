@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container d-flex justify-content-center mt-5 ">
+		<div class="card Regular shadow" style="min-width: 360px;">
+			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
+				<span>
+					<h1 class="d-flex logo">Cryto Traker</h1>
+				</span>
+				<div class="d-flex justify-content-center align-items-center">
+					<div class="pr-2 text-right">
+						<span class="pen">
+							<i class="fa-solid fa-pen"></i>
+						</span>
+						<span class="add">
+							<i class="fa-solid fa-plus"></i>
+						</span>
+					</div>
+					<div></div>
+				</div>
+
+			</div>
+
+			<button type="button" class="btn btn-link text-danger">
+				<a style="color: white; text-decoration: none;" href="{{ path('app_token_index') }}">Retour à la liste</a>
+			</button>
+
+			<div class="scroll">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
+					</div>
+				{% endfor %}
+
+				<div class="d-flex justify-content-center py-2">
+					<div class="debit pt-3 pb-1">
+						<div class="d-flex justify-content-between align-items-center px-3">
+							<span class="black"></span>
+							<div class="mt-4">
+								<div class="d-flex  flex-column justify-content-start">
+
+									<form method="post" action={{ path('app_token_payment') }}>
+										<div class="row">
+											<div class="col">
+												<i class="fa-solid fa-money-bill-1-wave"></i>
+												<span class="px-2">Dépenser :</span>
+												<input type="text" disabled name={{ quantity }} value="{{ quantity }}" class="form-control" placeholder="{{ quantity }}">
+											</div>
+											<div class="col">
+												<i class="fa-solid fa-money-bill-transfer"></i>
+												<span class="px-2">Recevoir (token) :</span>
+												<input type="text" disabled name={{ price }} class="form-control" placeholder="{{ price }}">
+											</div>
+										</div>
+										<div class=" black mt-2">
+											<i class="fa-solid fa-credit-card"></i>
+											<span class="px-2">Carte bancaire :
+											</span>
+											<span class="px-2">********8907</span>
+										</div>
+			
+										<input type="hidden" name="token" value="{{ token }}">
+										<div class="col-md-12 mt-5 text-center">
+											<button class="btn btn-secondary px-5" type="submit">{{ button_label|default('Procéder au paiement') }}</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="navbar align-items-center d-flex justify-content-between border-top">
+					<div class="d-flex justify-content-center"></div>
+					<div></div>
+					<div class="pr-1"></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+
+
+	{% endblock %}
