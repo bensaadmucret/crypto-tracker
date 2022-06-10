@@ -24,7 +24,6 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(ApiService $ApiService, 
     ManagerRegistry $managerRegistry, 
-    CsrfTokenManagerInterface $csrfTokenManager,
      ): Response
     {
         try {
@@ -37,11 +36,10 @@ class HomeController extends AbstractController
         $TokenCollection = new TokenCollection($data);
         $TokenCollection->save($managerRegistry);
         $token = $managerRegistry->getRepository(Token::class)->findAll();
-        $token_csrf = $csrfTokenManager->getToken('crypto_monnaie')->getValue();
-        //dd($token);
+        
         return $this->render('home/index.html.twig', [
             'tokens' => $token,
-            'token_csrf' => $token_csrf,
+           
         ]);
 
 

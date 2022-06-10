@@ -27,10 +27,13 @@ class TokenCollection
     public function getName(): array
     {
         $name = [];
-        foreach ($this->tokens['data'] as $token) {
+        foreach ($this->tokens as $token) {
+           $name[] = $token->getName();
+        }
+        /*foreach ($this->tokens['data'] as $token) {
             $name[] = $token['name'];
 
-        }
+        }*/
         return $name;
     }
 

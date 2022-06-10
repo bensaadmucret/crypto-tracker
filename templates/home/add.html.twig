@@ -10,7 +10,7 @@
 		<div class="card Regular shadow" style="min-width: 360px;">
 			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
 				<span>
-					<h1 class="d-flex logo">c</h1>
+					<h1 class="d-flex logo">Cryto Traker</h1>
 				</span>
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="pr-2 text-right">
@@ -28,33 +28,22 @@
 						<div class="d-flex justify-content-between align-items-center px-3">
 							<span class="black"></span>
 							<div>
-								<span class="d-flex justify-content-center py-2 result">0 &euro;</span>
+								
 								
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<form class="pt-4 px-3" action="message" method="post">
-					
-					<select class="form-control">
-						<option>selectionner une crypto</option>
-                        {% for cryto in tokens %}
-                        <option>{{ cryto.name }}</option>
-                          {% endfor %}
-					</select>
-                  
-					<div class="form-group">
-						<label for="InputQuantity">Quantité</label>
-						<input type="text" class="form-control" id="InputQuantity" placeholder="Quantité">
+				<div class="d-flex justify-content-center py-2">
+					<div class="debit pt-3 pb-1">
+						<div class="d-flex justify-content-between align-items-center px-3">
+							<span class="black"></span>
+							<div>
+								{{form(form)}}
+								
+							</div>
+						</div>
 					</div>
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" id="Check1">
-						<label class="form-check-label" for="Check1">RGBD</label>
-					</div>
-					<button type="submit" class="btn btn-primary">Ajouter</button>
-				</form>
-
 			</div>
 			<div class="navbar align-items-center d-flex justify-content-between border-top">
 				<div class="d-flex justify-content-center">

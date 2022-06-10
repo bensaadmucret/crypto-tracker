@@ -5,10 +5,13 @@ namespace App\Controller;
 use App\Entity\Token;
 use App\Form\TokenType;
 use App\Repository\TokenRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/token')]
 class TokenController extends AbstractController
@@ -16,9 +19,29 @@ class TokenController extends AbstractController
     #[Route('/', name: 'app_token_index', methods: ['GET'])]
     public function index(TokenRepository $tokenRepository): Response
     {
-        return $this->render('token/index.html.twig', [
-            'tokens' => $tokenRepository->findAll(),
-        ]);
+        $form = $this->createFormBuilder()
+        ->add('name', EntityType::class, [
+            'class' => Token::class,
+            'choice_label' => 'name',
+            'multiple' => false,
+            'expanded' => false,
+            'required' => true,
+            'empty_data' => '',
+            'placeholder' => 'Choisissez une ou plusieurs cryptomonnaies',
+            ])
+        ->add('prix',TextType::class,[
+            'required' => false,
+            
+        ] )
+        ->add('Quantité',TextType::class, )
+        ->add('submit', SubmitType::class, [
+            'label' => 'Valider',
+            'attr' => [
+                'class' => 'btn btn-primary',
+            ],
+        ])
+            ->getForm();
+    return $this->renderForm('home/add.html.twig',compact('form'));
     }
 
     #[Route('/new', name: 'app_token_new', methods: ['GET', 'POST'])]
