@@ -23,49 +23,52 @@
 					</div>
 					<div></div>
 				</div>
-
 			</div>
 
 			<button type="button" class="btn btn-link text-danger">
-				<a style="color: white; text-decoration: none;" href="{{ path('app_token_index') }}">Retour à la liste</a>
+				<a style="color: white; text-decoration: none;" href="{{ path('app_token_index') }}">	
+				<i class="fa-solid fa-rotate-left small"></i> Retour à la liste</a>
 			</button>
-
-			<div class="scroll">
-				{% for message in app.flashes('success') %}
-					<div class="alert alert-success">
-						{{ message }}
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<H3 class="fw-bold p-2">
+							<i class="fa-solid fa-file-invoice-dollar"></i> Frais supplémentaires
+						</h3>
+						<p class="fw-light p-2">Les frais d'achat de Cryto-monnaie par carte de crédit varient en fonction de votre banque</p>
 					</div>
-				{% endfor %}
-
-				<div class="d-flex justify-content-center py-2">
-					<div class="debit pt-3 pb-1">
-						<div class="d-flex justify-content-between align-items-center px-3">
-							<span class="black"></span>
+				</div>
+			</div>
+			<div class="scroll">
+				<div class="d-flex justify-content-center">
+					<div class="debit pb-1">
+						<div class="d-flex justify-content-between align-items-center px-4">
 							<div class="mt-4">
 								<div class="d-flex  flex-column justify-content-start">
-
 									<form method="post" action={{ path('app_token_payment') }}>
 										<div class="row">
-											<div class="col">
+											<div class="col-md-12 mt-5">
 												<i class="fa-solid fa-money-bill-1-wave"></i>
 												<span class="px-2">Dépenser :</span>
-												<input type="text" disabled name={{ quantity }} value="{{ quantity }}" class="form-control" placeholder="{{ quantity }}">
+												<input type="text" disabled name="quantity" value="{{quantity }}" class="form-control" placeholder="{{ quantity }}">
 											</div>
-											<div class="col">
+											<div class="col-md-12 mt-5">
 												<i class="fa-solid fa-money-bill-transfer"></i>
 												<span class="px-2">Recevoir (token) :</span>
-												<input type="text" disabled name={{ price }} class="form-control" placeholder="{{ price }}">
+												<input type="text" disabled name="price" value={{price }} class="form-control" placeholder="{{price }}">
 											</div>
 										</div>
-										<div class=" black mt-2">
+										<div class="black mt-4">
 											<i class="fa-solid fa-credit-card"></i>
 											<span class="px-2">Carte bancaire :
 											</span>
 											<span class="px-2">********8907</span>
 										</div>
-			
-										<input type="hidden" name="token" value="{{ token }}">
-										<div class="col-md-12 mt-5 text-center">
+										<input type="hidden"  name="price" value={{price}} class="form-control">
+										<input type="hidden" name="quantity" value="{{ quantity }}" class="form-control">
+										 <input type="hidden" name="token" value="{{ csrf_token('payment_process') }}"/>
+										<input type="hidden" name="crypto" value="{{ name }}" class="form-control">
+										<div class="col-md-12 mt-5 mb-4 text-center">
 											<button class="btn btn-secondary px-5" type="submit">{{ button_label|default('Procéder au paiement') }}</button>
 										</div>
 									</form>
@@ -74,12 +77,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="navbar align-items-center d-flex justify-content-between border-top">
-					<div class="d-flex justify-content-center"></div>
-					<div></div>
-					<div class="pr-1"></div>
-					<div></div>
-					<div></div>
+				<div class="border-top">
+					<div class="d-flex justify-content-center">
+						{{ include( 'home/_menu.html.twig') }}
+					</div>
+
 				</div>
 			</div>
 		</div>

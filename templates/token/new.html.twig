@@ -23,19 +23,14 @@
 					</div>
 					<div></div>
 				</div>
-                 
+
 			</div>
-              
-                <button type="button" class="btn btn-link text-danger">
-                 <a style="color: white; text-decoration: none;" href="{{ path('app_token_index') }}">Retour à la liste</a>
-                 </button>
-                
+
+			<button type="button" class="btn btn-link text-danger">
+				<a style="color: white; text-decoration: none;" href="{{ path('app_token_index') }}">Retour à la liste</a>
+			</button>
+
 			<div class="scroll">
-				{% for message in app.flashes('success') %}
-					<div class="alert alert-success">
-						{{ message }}
-					</div>
-				{% endfor %}
 
 				<div class="d-flex justify-content-center py-2">
 					<div class="debit pt-3 pb-1">
@@ -56,16 +51,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="navbar align-items-center d-flex justify-content-between border-top">
-					<div class="d-flex justify-content-center"></div>
-					<div></div>
-					<div class="pr-1"></div>
-					<div></div>
-					<div></div>
+				<div class="border-top">
+					<div class="d-flex justify-content-center">
+						{{ include( 'home/_menu.html.twig') }}
+					</div>
 				</div>
 			</div>
 		</div>
 
 
-		
 	{% endblock %}

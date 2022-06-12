@@ -105,6 +105,14 @@ class TokenCollection
         }
     }
 
+    public function getTokenByPrice($price) {
+        foreach ($this->tokens as $token) {
+            if ($token->getPrice() == $price) {
+                return $token->getName();
+            }
+        }
+    }
+
 
     // sauvegarde dans la base de données
     public function save(ManagerRegistry $managerRegistry)

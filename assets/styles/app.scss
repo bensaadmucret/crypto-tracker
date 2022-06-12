@@ -59,6 +59,13 @@ div.header-image {
     background-repeat: no-repeat;
      color: white;
     height: 100px;
+   
+}
+
+.header-image h1 { 
+    border: #4f5153 solid 1px; font-size: 2em;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .logo{
@@ -98,12 +105,14 @@ div.header-image {
     display: flex;
     flex-direction: column;
     min-width: 0;
+    max-width: 400px;
     position: relative;
 }
 
 .scroll{
     overflow-y: hidden;
     height: 500px;
+
 }
 
 .result{
@@ -117,13 +126,19 @@ div.header-image {
 .small{
     color: white;
     font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 30px;
 }
 
+.br-1{
+    border-radius: 10px;
+    border: 1px solidrgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    position: relative;
+}
 
-sapn.label-back{
+span.label-back{
     color: white;
     font-size: 14px;
     font-weight: bold;
@@ -131,3 +146,10 @@ sapn.label-back{
     margin-top: 30px;
 }
 
+.big{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}

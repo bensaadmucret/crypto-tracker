@@ -15,10 +15,9 @@ class ApiService
         $this->client = $client;
         $this->apiKey = $apiKey;
     }
-  
+    
     public function getApiData()
     {
-       
         $response = $this->client->request(
             'GET',
             'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',

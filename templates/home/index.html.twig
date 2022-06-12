@@ -4,8 +4,6 @@
 {% endblock %}
 
 {% block body %}
-
-
 	<div class="container d-flex justify-content-center mt-5 ">
 		<div class="card Regular shadow" style="min-width: 360px;">
 			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
@@ -13,7 +11,7 @@
 					<h1 class="d-flex logo">Cryto Traker</h1>
 				</span>
 				<div class="d-flex justify-content-center align-items-center">
-					<div class="pr-2 text-right">
+					<div class="text-right">
 						<span class="pen">
 							<i class="fa-solid fa-pen"></i>
 						</span>
@@ -25,55 +23,54 @@
 				</div>
 			</div>
 			<div class="scroll">
-				<div class="d-flex justify-content-center py-2 header-image border-bottom">
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
+					</div>
+				{% endfor %}
+				<div class="d-flex justify-content-center px-1 header-image">
 					<div class="debit pt-3 pb-1">
 						<div class="d-flex justify-content-between align-items-center px-3">
 							<span class="black"></span>
 							<div>
-								<span class="d-flex justify-content-center py-2 result">0 &euro;</span>
-
+								<span class="d-flex justify-content-center px-2 result">
+									+ {{wallet}} &euro;</span>
 							</div>
 						</div>
 					</div>
 				</div>
-
-
-				{% for cryto in tokens %}
-					<div class="m-3 d-flex justify-content-between py-2">
-						<div class="justify-content-between">
-							<span>
-							<img class="rounded-circle border border-light bg-white" src="{{ asset('images/'~cryto.symbol~'.svg') }}" alt="{{ cryto.symbol }}" width="30"/>
-							{{ cryto.symbol }}</span>
-							<span class="small">(
-								{{ cryto.name }}
-								)
-							</span>
-							<span class="small">{{ cryto.change7d }}
-								&euro;</span>
-							<span>
-								{% if cryto.change7d > 0 %}
-									<span class="p-3 small">&#9650;</span>
-								{% elseif cryto.change7d < 0 %}
-									<span class="p-3 small">&#9660;</span>
-								{% else %}
-									<span class="p-3 small"></h2>">&#x25BA;
+				<div class="m-3 d-flex flex-column justify-content-center mt-2 mb-2">
+					<ul class="justify-content-between">
+						{% for cryto in tokens %}
+							<li>
+								<img class="rounded-circle border border-light bg-white" src="{{ asset('images/'~cryto.symbol~'.svg') }}" alt="{{ cryto.symbol }}" width="24"/>
+								{{ cryto.symbol }}
+								<span class="small m-2 px-2">(
+									{{ cryto.name }}
+									)
 								</span>
-
-							{% endif %}
+								<span class="small">{{ cryto.change7d }}
+									&euro;</span>
+								<span>
+									{% if cryto.change7d > 0 %}
+										<span class="p-3 small">&#9650;</span>
+									{% elseif cryto.change7d < 0 %}
+										<span class="p-3 small">&#9660;</span>
+									{% else %}
+										<span class="p-3 small"></h2>">&#x25BA;
+									</span>
+								{% endif %}
+								<hr style="border-top: 1px solid #ccc;">
+							</li>
 						</span>
-
-					</div>
-				</div>
-			{% endfor %}
-
-
-		</div>
-		<div class="mt-4 navbar align-items-center d-flex justify-content-between border-top">
-			<div class="d-flex justify-content-center"></div>
-			<div></div>
-			<div class="pr-1"></div>
-			<div></div>
-
+					</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
-</div>{% endblock %}
+	<div class=" border-top">
+		<div class="d-flex justify-content-center">
+			{{ include( 'home/_menu.html.twig') }}
+		</div>
+	</div>
+</div></div>{% endblock %}

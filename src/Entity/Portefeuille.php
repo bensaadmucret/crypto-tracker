@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PortefeuilleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PortefeuilleRepository::class)]
 class Portefeuille
@@ -16,7 +17,7 @@ class Portefeuille
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: "decimal", precision: 19, scale: 10)]
     private $price;
 
     #[ORM\Column(type: 'float')]
