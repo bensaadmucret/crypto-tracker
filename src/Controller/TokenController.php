@@ -13,9 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/token')]
+#[IsGranted('ROLE_USER')]
 class TokenController extends AbstractController
 {
     #[Route('/', name: 'app_token_index', methods: ['GET', 'POST'])]
@@ -34,7 +36,7 @@ class TokenController extends AbstractController
             'expanded' => false,
             'required' => true,
             'empty_data' => '',
-            'placeholder' => 'Choisissez une cryptomonnaies',
+            'placeholder' => 'Choisissez une cryptomonnaie',
             ])
 
         ->add('quantity',MoneyType::class,[
@@ -94,6 +96,7 @@ class TokenController extends AbstractController
     
 
     #[Route('/{id}', name: 'app_token_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(Token $token): Response
     {
         return $this->render('token/show.html.twig', [
@@ -120,6 +123,7 @@ class TokenController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_token_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_USER')]
     public function delete(Request $request, Token $token, TokenRepository $tokenRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$token->getId(), $request->request->get('_token'))) {

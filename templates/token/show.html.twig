@@ -1,50 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Token{% endblock %}
+{% block title %}Token
+{% endblock %}
 
 {% block body %}
-    <h1>Token</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ token.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ token.name }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ token.slug }}</td>
-            </tr>
-            <tr>
-                <th>Symbol</th>
-                <td>{{ token.symbol }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ token.price }}</td>
-            </tr>
-            <tr>
-                <th>Change_24h</th>
-                <td>{{ token.change24h }}</td>
-            </tr>
-            <tr>
-                <th>Change_1h</th>
-                <td>{{ token.change1h }}</td>
-            </tr>
-            <tr>
-                <th>Change_7d</th>
-                <td>{{ token.change7d }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_token_index') }}">back to list</a>
-
-    <a href="{{ path('app_token_edit', {'id': token.id}) }}">edit</a>
-
-    {{ include('token/_delete_form.html.twig') }}
-{% endblock %}
+	<div class="container d-flex justify-content-center mt-5 ">
+		<div class="card Regular shadow" style="min-width: 360px;">
+			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
+				<span>
+					<h1 class="d-flex logo">Cryto Traker</h1>
+				</span>
+				<div class="d-flex justify-content-center align-items-center">
+					<div class="text-right">
+						<span class="pen">
+							<a class="text-white" href="{{ path('app_portefeuille_index') }}">
+								<i class="fa-solid fa-pen"></i>
+							</a>
+						</span>
+						<span class="add">
+							<a class="text-white" href="{{ path('app_token_index') }}">
+								<i class="fa-solid fa-plus"></i>
+							</a>
+						</span>ass="fa-solid fa-plus"></i>
+				</span>
+			</div>
+			<div></div>
+		</div>
+	</div>
+	<div class="stat mb-4">
+		<div class="px-1 header-image mb-3">
+			<div class="px-2">
+				<div class="py-3">
+					<div class="d-flex flex-column justify-content-center py-4">
+						Le
+						{{date}}
+						<div class="">Votre solde actuel est de
+							{{sum |number_format}}
+							€</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card mb-5">
+			<div class="card-body">
+				{{render_chart(chart)}}
+			</div>
+		</div>
+		<div class="m-3 d-flex flex-column justify-content-center mt-2 mb-2"></div>
+	</div>
+	<div class=" border-top">
+		<div class="d-flex justify-content-center">
+			{{ include( 'home/_menu.html.twig') }}
+		</div>
+	</div>
+</div></div><h1>Token</h1><table class="table">
+<tbody>
+	<tr>
+		<th>Id</th>
+		<td>{{ token.id }}</td>
+	</tr>
+	<tr>
+		<th>Name</th>
+		<td>{{ token.name }}</td>
+	</tr>
+	<tr>
+		<th>Slug</th>
+		<td>{{ token.slug }}</td>
+	</tr>
+	<tr>
+		<th>Symbol</th>
+		<td>{{ token.symbol }}</td>
+	</tr>
+	<tr>
+		<th>Price</th>
+		<td>{{ token.price }}</td>
+	</tr>
+	<tr>
+		<th>Change_24h</th>
+		<td>{{ token.change24h }}</td>
+	</tr>
+	<tr>
+		<th>Change_1h</th>
+		<td>{{ token.change1h }}</td>
+	</tr>
+	<tr>
+		<th>Change_7d</th>
+		<td>{{ token.change7d }}</td>
+	</tr>
+</tbody></table><a href="{{ path('app_token_index') }}">back to list</a><a href="{{ path('app_token_edit', {'id': token.id}) }}">edit</a>{{ include('token/_delete_form.html.twig') }}{% endblock %}

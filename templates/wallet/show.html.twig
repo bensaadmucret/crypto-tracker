@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vos gains
+{% block title %}wallet index
 {% endblock %}
 
 {% block body %}
+
 
 	<div class="container d-flex justify-content-center mt-5 ">
 		<div class="card Regular shadow" style="min-width: 360px;">
@@ -28,23 +29,38 @@
 				</div>
 			</div>
 			<div class="stat mb-4">
-				<div class="px-1 header-image mb-3">
-					<div class="px-2">
-						<div class="py-3">
-							<div class="d-flex flex-column justify-content-center py-4">
-								Le
-								{{date}}
-								<div class="">Votre solde actuel est de
-									{{sum |number_format}}
-									€</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
 				<div class="card mb-5">
-					<div class="card-body">
-						{{render_chart(chart)}}
-					</div>
+					<table class="table small p-2">
+						<thead>
+							<tr>
+
+								<th>Nom
+								</th>
+								<th>Quantité</th>
+								<th>Prix</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for wallet in wallets %}
+								<tr>
+
+									<td>{{ wallet.name }}</td>
+									<td>{{ wallet.quantity }}</td>
+									<td>{{ wallet.price }}</td>
+									<td>
+										<a href="{{ path('app_wallet_show', {'id': wallet.id}) }}">show</a>
+										<a href="{{ path('app_wallet_edit', {'id': wallet.id}) }}">edit</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="9">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
 				</div>
 				<div class="m-3 d-flex flex-column justify-content-center mt-2 mb-2"></div>
 			</div>

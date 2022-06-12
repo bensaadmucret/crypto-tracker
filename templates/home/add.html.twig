@@ -15,10 +15,14 @@
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="pr-2 text-right">
 						<span class="pen">
-							<i class="fa-solid fa-pen"></i>
+							<a class="text-white" href="{{ path('app_portefeuille_index') }}">
+								<i class="fa-solid fa-pen"></i>
+							</a>
 						</span>
 						<span class="add">
-							<i class="fa-solid fa-plus"></i>
+							<a class="text-white" href="{{ path('app_token_index') }}">
+								<i class="fa-solid fa-plus"></i>
+							</a>
 						</span>
 					</div>
 					<div></div>
@@ -44,15 +48,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="navbar align-items-center d-flex justify-content-between border-top">
-					<div class="d-flex justify-content-center"></div>
-					<div></div>
-					<div class="pr-1"></div>
-					<div></div>
-					<div></div>
+				<div class=" border-top">
+					<div class="d-flex justify-content-center">
+						{{ include( 'home/_menu.html.twig') }}
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
-	{% endblock %}
+{% endblock %}

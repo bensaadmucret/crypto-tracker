@@ -7,12 +7,16 @@
         class="btn  text-white">
         <i class="fa-solid fa-cart-plus big"></i>
         </a>
-        <a href="{{ path('app_home') }}"
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        <a href="{{ path('app_logout') }}"
+        onclick="return confirm('souhaitez vous déconnecter?')";
         class="btn  text-white">
         <i class="fa-solid fa-sign-out-alt big"></i>
         </a>
-        <a href="{{ path('app_home') }}"
+        {% else %}
+        <a href="{{ path('app_login') }}"
         class="btn  text-white">
-        <i class="fa-solid fa-user-plus big"></i>
+        <i class="fa-solid fa-sign-in-alt big"></i>
         </a>
+         {% endif %}
 </div>

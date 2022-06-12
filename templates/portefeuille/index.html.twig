@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Portefeuille index
+{% endblock %}
+
+{% block body %}
+
+	<div class="container d-flex justify-content-center mt-5 ">
+		<div class="card Regular shadow" style="min-width: 360px;">
+			<div class="d-flex justify-content-between px-3 align-items-center border-bottom">
+				<span>
+					<h1 class="d-flex logo">Cryto Traker</h1>
+				</span>
+				<div class="d-flex justify-content-center align-items-center">
+					<div class="text-right">
+							<span class="pen">
+							<a  class="text-white" href="{{ path('app_portefeuille_index') }}"><i class="fa-solid fa-pen"></i></a>
+						</span>
+						<span class="add">
+							<a class="text-white" href="{{ path('app_token_index') }}"><i class="fa-solid fa-plus"></i></a>
+						</span>
+					</div>
+					<div></div>
+				</div>
+			</div>
+			<div class="stat mb-4">
+				<div class="px-1 header-image mb-3">
+					<div class="">
+						<div class="mb-3">
+                        <h1>Portefeuille</h1>
+							<div class="d-flex flex-column justify-content-center mb-3">
+								
+								<a class="text-white bt-3" href="{{ path('app_token_index') }}">
+                                <button class="text-white btn btn-outline-secondary">Achetez de la cryptomonnaie</button>
+                                </a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="text-white">
+					<table class="table table-striped table-dark">
+						<thead>
+							<tr>
+								<th>Cryptomonnaie</th>
+								<th>Valeur du token</th>
+								<th>Quantité</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for portefeuille in portefeuilles %}
+								<tr>
+									<td>{{ portefeuille.name }}</td>
+									<td>{{ portefeuille.price }}</td>
+									<td>{{ portefeuille.quantity }} € </td>
+									<td>
+										<a class="text-white" role="button" href="{{ path('app_portefeuille_show', {'id': portefeuille.id}) }}"><i class="fa-solid fa-eye"></i></a>
+										<a class="text-white" role="button" href="{{ path('app_portefeuille_edit', {'id': portefeuille.id}) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="5">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+
+				</div>
+				<div class="m-3 d-flex flex-column justify-content-center mt-2 mb-2"></div>
+			</div>
+			<div class=" border-top">
+				<div class="d-flex justify-content-center">
+					{{ include( 'home/_menu.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

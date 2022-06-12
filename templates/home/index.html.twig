@@ -13,16 +13,16 @@
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="text-right">
 						<span class="pen">
-							<i class="fa-solid fa-pen"></i>
+							<a  class="text-white" href="{{ path('app_portefeuille_index') }}"><i class="fa-solid fa-pen"></i></a>
 						</span>
 						<span class="add">
-							<i class="fa-solid fa-plus"></i>
+							<a class="text-white" href="{{ path('app_token_index') }}"><i class="fa-solid fa-plus"></i></a>
 						</span>
 					</div>
 					<div></div>
 				</div>
 			</div>
-			<div class="scroll">
+			<div class="scroll mb-4">
 				{% for message in app.flashes('success') %}
 					<div class="alert alert-success">
 						{{ message }}
@@ -33,16 +33,23 @@
 						<div class="d-flex justify-content-between align-items-center px-3">
 							<span class="black"></span>
 							<div>
+							 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
 								<span class="d-flex justify-content-center px-2 result">
-									+ {{wallet}} &euro;</span>
+									+ {{wallet}} &euro;
+								</span>
+							{% else %}
+								<span class="d-flex justify-content-center px-2 mt-4 mb-4">
+									<h3 class="font-weight-light">Connectez-vous pour voir votre solde</h3>
+								</span>
+							{% endif %}
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="m-3 d-flex flex-column justify-content-center mt-2 mb-2">
-					<ul class="justify-content-between">
+					<ul class="justify-content-between mb-2">
 						{% for cryto in tokens %}
-							<li>
+							<li class="mb-2">
 								<img class="rounded-circle border border-light bg-white" src="{{ asset('images/'~cryto.symbol~'.svg') }}" alt="{{ cryto.symbol }}" width="24"/>
 								{{ cryto.symbol }}
 								<span class="small m-2 px-2">(
@@ -53,11 +60,17 @@
 									&euro;</span>
 								<span>
 									{% if cryto.change7d > 0 %}
-										<span class="p-3 small">&#9650;</span>
+										<span class="p-3 small">
+										<i class="fa-solid fa-arrow-trend-up"></i>
+										
+										</span>
 									{% elseif cryto.change7d < 0 %}
-										<span class="p-3 small">&#9660;</span>
+										<span class="p-3 ">
+										<i class="fa-solid fa-arrow-trend-down"></i>
+										</span>
 									{% else %}
-										<span class="p-3 small"></h2>">&#x25BA;
+										<span class="p-3 small">
+										<i class="fa-solid fa-arrow-right"></i>
 									</span>
 								{% endif %}
 								<hr style="border-top: 1px solid #ccc;">
