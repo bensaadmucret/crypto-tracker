@@ -91,9 +91,10 @@
             "@auto-scripts"
         ],
         "compile": [
+            "composer install",
             "php bin/console doctrine:migrations:migrate",
             "composer dump-autoload -o"
-            
+
         ]
     },
     "conflict": {
