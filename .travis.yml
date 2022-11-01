@@ -1,34 +1,12 @@
 language: php
 sudo: false
 
-cache:
-  yarn: true
-  directories:
-    - $HOME/.composer/cache/files
-    - ./bin/.phpunit
+warnings_are_errors: false
 
-env:
-  global:
-    - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
-    - ACTION="install"
-
-matrix:
-  fast_finish: true
-  include:
-    - php: 7.2
-    - php: 7.3
-      env: SYMFONY="5.0.*"
-        ACTION="update"
-    - php: 7.4
-
-before_install:
-  - composer self-update
-
+php:
+  - 7.3
 install:
-  - php -r "echo ini_get('memory_limit').PHP_EOL;"
-  # install or update
-  - composer $ACTION
-  - ./bin/phpunit install
+  - composer install --prefer-dist --no-interaction
 
 script:
-  - ./bin/phpunit
+  - ./vendor/bin/phpunit --coverage-text --colors=never
