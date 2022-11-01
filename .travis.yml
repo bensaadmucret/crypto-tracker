@@ -6,8 +6,12 @@ warnings_are_errors: false
 php:
   - 7.3
 install:
-  - composer update --prefer-dist --no-interaction
-  - composer install --prefer-dist --no-interaction
+  - composer update --no-interaction
+  - composer install  --no-interaction
+  - composer require --dev phpunit/phpunit
+
+
+
 
 script:
   - ./vendor/bin/phpunit --coverage-text --colors=never
