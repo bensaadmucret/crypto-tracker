@@ -37,7 +37,12 @@ class HomeController extends AbstractController
         foreach ($wallet as $key => $value) {
            $sum[] = ($value->getQuantity());
         }
-        $sum = array_sum($sum);
+        if (isset($sum)) {
+            $sum = array_sum($sum);
+        } else {
+            $sum = 0;
+        }
+     
         
         return $this->render('home/index.html.twig', [
             'tokens' => $token,
