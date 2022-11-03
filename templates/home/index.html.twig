@@ -35,7 +35,7 @@
 							<div>
 							 {% if is_granted("IS_AUTHENTICATED_FULLY") %}
 								<span class="d-flex justify-content-center px-2 result">
-									+ {{wallet}} &euro;
+								<a href="{{ path('app_chartjs_index') }}">	+ {{wallet}} &euro; </a>
 								</span>
 							{% else %}
 								<span class="d-flex justify-content-center px-2 mt-4 mb-4">

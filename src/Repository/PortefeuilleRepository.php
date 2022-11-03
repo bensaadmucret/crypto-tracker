@@ -39,6 +39,25 @@ class PortefeuilleRepository extends ServiceEntityRepository
         }
     }
 
+    public function getName (Portefeuille $entity): string
+    {
+        return $entity->getName();
+    }
+
+    public function getQuantity (Portefeuille $entity): int
+    {
+        return $entity->getQuantity();
+    }
+
+    public function getSum (): int
+    {
+        $sum = 0;
+        foreach ($this->findAll() as $entity) {
+            $sum += $this->getQuantity($entity);
+        }
+        return $sum;
+    }
+
 //    /**
 //     * @return Portefeuille[] Returns an array of Portefeuille objects
 //     */
