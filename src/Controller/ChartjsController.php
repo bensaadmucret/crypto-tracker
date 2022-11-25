@@ -36,7 +36,7 @@ class ChartjsController extends AbstractController
             'datasets' => [
                 [
                     'label' => 'Valeurs du portefeuille en €',
-                    'backgroundColor' => ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'grey', 'black', 'brown'],
+                    'backgroundColor' => ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'pink', 'grey', 'white', 'brown'],
                     'data' => $data,
                 ],
             ],

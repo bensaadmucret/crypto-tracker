@@ -114,10 +114,11 @@ class TokenCollection
     }
 
 
-    // sauvegarde dans la base de données
+
     public function save(ManagerRegistry $managerRegistry)
     {
         if(!$managerRegistry->getRepository(Token::class)->findAll()) {
+
             foreach ($this->tokens['data'] as $token) {
                 $newToken = new Token();
                 $newToken->setName($token['name']);
@@ -131,18 +132,7 @@ class TokenCollection
             }
             $managerRegistry->getManager()->flush();
         }
-        // sinon mettre a jour le priceChange
-        else {
-            foreach ($this->tokens['data'] as $token) {
-                $newToken = $managerRegistry->getRepository(Token::class)->findOneBy(['name' => $token['name']]);
-                $newToken->setPrice($token['quote']['EUR']['price']);
-                $newToken->setChange24h($token['quote']['EUR']['percent_change_24h']);
-                $newToken->setChange1h($token['quote']['EUR']['percent_change_1h']);
-                $newToken->setChange7d($token['quote']['EUR']['percent_change_7d']);
-                $managerRegistry->getManager()->persist((object)$newToken);
-            }
-            $managerRegistry->getManager()->flush();
-        }
+
 
     }
     
