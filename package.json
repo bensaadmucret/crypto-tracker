@@ -23,6 +23,13 @@
         "build": "encore production --progress",
         "heroku-postbuild": "node_modules/.bin/encore production"
     },
+    "name": "your-project-name",
+        "description": "a really cool app",
+        "version": "1.0.0",
+        "engines": {
+            "node": "v14.15.*",
+            "npm": "8.11.*"
+    },
     "browserslist": [
         "defaults"
     ]

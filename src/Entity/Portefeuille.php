@@ -17,7 +17,7 @@ class Portefeuille
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: "decimal", precision: 19, scale: 10)]
+    #[ORM\Column(type:'decimal', precision:19, scale:10)]
     private $price;
 
     #[ORM\Column(type: 'float')]
