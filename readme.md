@@ -2,7 +2,7 @@
 # Cryto Tracker
 
 cryptocurrency portfolio tracker app
-crypto tracker app project for a bachelor degree
+crypto tracker app project 
 
 ## Installation
 
